@@ -180,20 +180,68 @@ v[1] = 3
 
 # Пример обычной функции
 
+  function sum_of_squares(a, b)
+    return a^2 + b^2
+  end
+
 # Пример лямбда-функции (аннонимной функции)
+
+  double = x -> x * 2
+
 
 # Пример функции с переменным количеством аргументов
 
+   function summ_all(args...)
+       total = 0
+       for num in args
+          total += num
+       end
+       return total
+   end
 # Пример функции с именованными аргументами
 
+    function create_user(; name, age, is_admin=false)
+         println("Создан пользователь $name, возраст $age", is_admin? " (админ)" : "")
+     end
+
 # Функции с переменным кол-вом именованных аргументов
+
+     function configure_settingse(; args...)
+          peintln("Настройки")
+          for (key, value) in args
+                println("$key = $value")
+          end
+      end
 
 #=
 Передать кортеж в функцию, которая принимает на вход несколько аргументов.
 Присвоить кортеж результату функции, которая возвращает несколько аргументов.
 Использовать splatting - деструктуризацию кортежа в набор аргументов.
 =#
+#=
+1 - Передача кортежа в функцию, принимающую несколько аргументов:
+       function(a, b, c)
+          return a + b + c
+        end
 
+       my_tuple = (10, 20, 30)
+       result = sum_three(my_tuple...) #Используем splatting
+
+        println(result)
+        При этом важно, чтобы размер кортежа равнялся количеству аргументов 
+        вызываемой функции
+2 - Присвоение кортежа результату функции, возрвращающей несколько значений
+        function calculate_stats(x, y)
+            sum = x + y
+            product = x * y
+            difference = x - y
+            return sum, product, difference
+        end
+
+        stats_tuple = calculate_stats(8, 5)
+
+        println(stats_tuple)
+=#
 
 #===========================================================================================
 3. loop fusion, broadcast, filter, map, reduce, list comprehension
