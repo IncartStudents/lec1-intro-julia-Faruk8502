@@ -252,7 +252,23 @@ v[1] = 3
 - через loop fusion и
 - с помощью reduce
 =#
+#=
+1 - через loop fusion:
+          function loop(arg)
+              result = 1
+              for x in arg
+                  result += x
+              end
+              return result
+          end
 
+          arg = [1, 2, 3, 4, 5]
+          println(loop(arg))
+2 - С помощью reduce:
+          arg = [1, 2, 3, 4, 5]
+          product = reduce((acc, x) -> acc * x, arg)
+          println(product)
+=#
 #=
 Написать функцию от одного аргумента и запустить ее по всем элементам массива
 с помощью точки (broadcast)
