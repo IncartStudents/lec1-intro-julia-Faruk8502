@@ -82,20 +82,24 @@ v[1] = 3
     struct Box{T}
         value::T
     end
+#=
     здесь T - это параметр типа (может быть Int, String, Vector и т.д.),
     value::T - поле, тип которого зависит от T.
+=#
 #2 - Ограничение параметра типа:
     struct NumericBox{T <: Number}
         value::T
     end
+#=
     здесь тип NumericBox принимает только числовые типы(Int, Float и т.д.)
+=#
 #3 - Параметризированный тип с несколькими параметрами:
     struct Pair{A, B}
         first::A
         second::B
     end
 #4 - Параметризированные изменяемые типы:
-    mutable strict MutableBox{T}
+    mutable struct MutableBox{T}
         value::T
     end
 #=  Особенностью данного параметризированного типа является наличие возможности изменить
@@ -112,9 +116,9 @@ v[1] = 3
     function f1(a, b)
         return a + b
     end
-    принимает a и b любого типа, для которого определено сложение.
+#    принимает a и b любого типа, для которого определено сложение.
 #- Функция с указанием типов:
-    function f2(a:Number, b::Number)
+    function f2(a::Number, b::Number)
         return a + b
     end
 #=
@@ -134,8 +138,9 @@ v[1] = 3
     struct Point
         x :: Int64
         y :: Int64
+    end
 #и параметризированным абстрактным типом с жестко заданными типами полей:
-    struct Point{X <: Int64, Y <: Int64}
+    struct Point2{X <: Int64, Y <: Int64}
         x :: X
         y :: Y
     end
@@ -154,7 +159,7 @@ v[1] = 3
     abstract type Shape end
 #- Создаём подтипы:
     struct Circle <: Shape
-        side::Float64
+        radius::Float64
     end
 
     struct Square <: Shape
